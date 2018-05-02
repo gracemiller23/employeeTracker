@@ -17,7 +17,7 @@ var database = firebase.database();
 var employeeName = "";
 var role = "";
 var startDate = "";
-var time = moment(startDate, "MM/DD/YYYY", true).format();
+var time = moment(startDate, "MM/DD/YY", true).isValid();
 var rate = "";
 var total = "";
 
@@ -42,12 +42,6 @@ $("#submit").on("click", function(event){
         dateAdded:
         firebase.database.ServerValue.TIMESTAMP
     });
-
-    if (time === true){
-        console.log("meep!")
-    } else{
-        console.log("moop!")
-    }
 
     $(".form-control").val("");
 
