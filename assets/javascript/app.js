@@ -17,7 +17,7 @@ var database = firebase.database();
 var employeeName = "";
 var role = "";
 var startDate = "";
-var time = "";
+var time = moment(startDate, "MM/DD/YYYY", true).format();
 var rate = "";
 var total = "";
 
@@ -43,7 +43,14 @@ $("#submit").on("click", function(event){
         firebase.database.ServerValue.TIMESTAMP
     });
 
+    if (time === true){
+        console.log("meep!")
+    } else{
+        console.log("moop!")
+    }
+
     $(".form-control").val("");
+
 });
 
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snap){
@@ -58,10 +65,11 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
     var dateSnap = snap.val().startDate;
     var rateSnap = snap.val().rate;
 
+    $("#blorp").prepend("<tr><td>" +nameSnap+ "</td><td>" +roleSnap +"</td><td>" +dateSnap+ "</td><td>"+ rateSnap+ "</td><td>" );
+
+
 
 });
-
-
 
 //moment("20111031", "YYYYMMDD").fromNow();
 
