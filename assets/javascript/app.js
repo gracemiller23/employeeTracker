@@ -21,7 +21,7 @@ var time = "";
 var rate = "";
 var total = "";
 
-$("#").on("click", function(event){
+$("#submit").on("click", function(event){
 
     event.preventDefault();
 
