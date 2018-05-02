@@ -23,6 +23,8 @@ var total = "";
 
 $("#submit").on("click", function(event){
 
+
+
     event.preventDefault();
 
     employeeName = $("#ename").val().trim();
@@ -40,4 +42,27 @@ $("#submit").on("click", function(event){
         dateAdded:
         firebase.database.ServerValue.TIMESTAMP
     });
+
+    $(".form-control").val("");
 });
+
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snap){
+
+    // console.log(snap.val().employeeName);
+    // console.log(snap.val().role);
+    // console.log(snap.val().startDate);
+    // console.log(snap.val().rate);
+
+    var nameSnap = snap.val().employeeName;
+    var roleSnap = snap.val().role;
+    var dateSnap = snap.val().startDate;
+    var rateSnap = snap.val().rate;
+
+
+});
+
+
+
+//moment("20111031", "YYYYMMDD").fromNow();
+
+
