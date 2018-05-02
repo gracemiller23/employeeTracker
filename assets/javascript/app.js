@@ -32,6 +32,8 @@ $("#submit").on("click", function(event){
     startDate = $("#sdate").val().trim();
     // time = $("#").val().trim();
     rate = $("#mrate").val().trim();
+    time = (moment(startDate).diff(moment(), "months")* -1);
+    total = rate*time;
 
     database.ref().push({
         employeeName: employeeName,
@@ -39,6 +41,7 @@ $("#submit").on("click", function(event){
         startDate: startDate,
         time: time,
         rate: rate,
+        total: total,
         dateAdded:
         firebase.database.ServerValue.TIMESTAMP
     });
@@ -57,9 +60,11 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
     var nameSnap = snap.val().employeeName;
     var roleSnap = snap.val().role;
     var dateSnap = snap.val().startDate;
+    var timeSnap = snap.val().time;
     var rateSnap = snap.val().rate;
+    var totalSnap = snap.val().total;
 
-    $("#blorp").prepend("<tr><td>" +nameSnap+ "</td><td>" +roleSnap +"</td><td>" +dateSnap+ "</td><td>"+ rateSnap+ "</td><td>" );
+    $("#blorp").prepend("<tr><td>" +nameSnap+ "</td><td>" +roleSnap +"</td><td>" +dateSnap+ "</td><td>"+ timeSnap+"</td><td>" +rateSnap+ "</td><td>" +totalSnap+ "</td><tr>" );
 
 
 
